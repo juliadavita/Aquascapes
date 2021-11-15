@@ -9,7 +9,7 @@
         <div class="row mt-3">
             <div class="col-6 col-md-4"> Here comes an image</div>
             <div class="col-md-8">
-                <h2>First post</h2>
+                <h2><a href="/post">First post</a></h2>
                 <p>
                     Varius enim ipsum, quis lobortis nisi consequat a. Pellentesque nibh lorem, posuere et fringilla eget, euismod vitae ligula. Sed porta leo eu nisl bibendum, congue gravida mauris cursus. Sed ut nisi et augue condimentum ultricies. Phasellus feugiat mi id tristique hendrerit. Nulla pharetra varius dignissim. Curabitur pharetra erat et lectus lobortis maximus. Donec id dolor aliquam, semper orci in, congue augue. Vestibulum tempor purus et felis varius.
                 </p>
@@ -19,7 +19,7 @@
         <div class="row mt-3">
             <div class="col-6 col-md-4"> Here comes an image</div>
             <div class="col-md-8">
-                <h2>Second post</h2>
+                <h2><a href="/post">Second post</a></h2>
                 <p>
                     Varius enim ipsum, quis lobortis nisi consequat a. Pellentesque nibh lorem, posuere et fringilla eget, euismod vitae ligula. Sed porta leo eu nisl bibendum, congue gravida mauris cursus. Sed ut nisi et augue condimentum ultricies. Phasellus feugiat mi id tristique hendrerit. Nulla pharetra varius dignissim. Curabitur pharetra erat et lectus lobortis maximus. Donec id dolor aliquam, semper orci in, congue augue. Vestibulum tempor purus et felis varius.
                 </p>
