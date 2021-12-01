@@ -28,3 +28,6 @@ Route::get('/posts/{post}', function ($slug) {
 Route::get('/welcome', function () {
     return view('welcome');
 });
+
+// Controller
+Route::resource('posts', 'App\Http\Controllers\PostsController');
