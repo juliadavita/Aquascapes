@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header">Posts</div>
                     <div class="card-body">
-                        <a href="{{ url('/contact/create') }}" class="btn btn-success btn-sm" title="Add New Post">
+                        <a href="{{ url('/posts/create') }}" class="btn btn-success btn-sm" title="Add New Post">
                             <i class="fa fa-plus" aria-hidden="true"></i> Add New
                         </a>
                         <br/>
@@ -32,7 +32,7 @@
                                             <form method="POST" action="{{ url('/posts' . '/' . $post->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Contact" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Fish" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                                             </form>
                                         </td>
                                     </tr>

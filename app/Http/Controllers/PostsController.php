@@ -26,7 +26,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        //
+        return view('contacts.create');
     }
 
     /**
@@ -37,7 +37,9 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $input = $request->all();
+        Contact::create($input);
+        return redirect('post')->with('flash_message', 'Fish added!');
     }
 
     /**
@@ -46,9 +48,10 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit')->with('posts', $post);
     }
 
     /**
@@ -57,9 +60,10 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $post = Post::find($id);
+        return view('posts.edit')->with('posts', $post);
     }
 
     /**
@@ -69,9 +73,12 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+        $input = $request->all();
+        $post->update($input);
+        return redirect('post')->with('flash_message', 'Post updated');
     }
 
     /**
@@ -80,8 +87,9 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        Post::destroy($id);
+        return redirect('post')->with('flash_message', 'Post deleted');
     }
 }
