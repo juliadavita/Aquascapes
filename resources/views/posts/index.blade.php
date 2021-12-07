@@ -15,9 +15,10 @@
         <thead>
         <tr></tr>
         <tr>
-            <th scope="col">Post ID</th>
-            <th scope="col">Post Name</th>
-            <th scope="col">Post Description</th>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Image</th>
         </tr>
         </thead>
         <tbody>
@@ -27,6 +28,8 @@
             <th scope="row">{{ $loop->iteration }}</th>
             <td>{{ $post->fish }}</td>
             <td>{{ $post->description }}</td>
+            <td><img src="/content_image/{{ $post->content_image }}" width="100px"></td>
+{{--            <td>{{ $post->content_image }}</td>--}}
             <td>
 
                 <div class="dropdown"> {{-- Dropdown --}}

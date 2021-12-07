@@ -16,7 +16,6 @@ class PostsController extends Controller
     {
         $posts = Post::all();
         return view('posts.index', compact('posts'));
-//            ->with('i', (request()->input('page', 1) -1) *5);
     }
 
     /**
@@ -37,13 +36,35 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->validate([
+//        $data = $request->validate([
+//            'fish' => 'required',
+//            'description' => 'required',
+//            'content_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+//        ]);
+//
+//        Post::create($data);
+//        return redirect()->route(posts.index);
+
+        $request->validate([
             'fish' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'content_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
 
-        Post::create($data);
-        return redirect()->route(posts.index);
+        $input = $request->all();
+
+        if ($image = $request->file('content_image')) {
+            $destinationPath = 'content_image/';
+            $contentImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $contentImage);
+            $input['content_image'] = "$contentImage";
+        }
+
+        Post::create($input);
+
+        return redirect()->route('posts.index')
+            ->with('success','Fish added successfully.');
+
     }
 
     /**
@@ -77,15 +98,39 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+//        $request->validate([
+//            'fish' => 'required',
+//            'description' => 'required',
+//            'content_image' => 'required'
+//        ]);
+//        $post->fish = $request->fish;
+//        $post->description = $request->description;
+//        $post->content_image = $request->content_image;
+//        $post->save();
+//
+//        return redirect()->route('posts.index');
+
         $request->validate([
             'fish' => 'required',
-            'description' => 'required'
+            'description' => 'required',
         ]);
-        $post->fish = $request->fish;
-        $post->description = $request->description;
-        $post->save();
 
-        return redirect()->route('posts.index');
+        $input = $request->all();
+
+        if ($image = $request->file('content_image')) {
+            $destinationPath = 'content_image/';
+            $contentImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $contentImage);
+            $input['content_image'] = "$contentImage";
+        }else{
+            unset($input['content_image']);
+        }
+
+        $post->update($input);
+
+        return redirect()->route('posts.index')
+            ->with('success','Fish updated successfully');
+
     }
 
     /**

@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('fish');
             $table->text('description');
+            $table->string('content_image');
             $table->timestamps();
         });
     }

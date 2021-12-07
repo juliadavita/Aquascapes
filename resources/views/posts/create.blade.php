@@ -14,11 +14,13 @@
         </div>
     @endif
 
-    <form action="{{ route('posts.store') }}" method="post">
+    <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
         @csrf
-        <input type="text" name="fish" class="form-control mb-3" placeholder="Post Name"/>
+        <input type="text" name="fish" class="form-control mb-3" placeholder="Fish name"/>
 
         <textarea class="form-control mb-3" name="description" rows="4" placeholder="Description"></textarea>
+
+        <input type="file" name="content_image" class="form-control mb-3" placeholder="Image"/>
 
         <button class="btn btn-primary float-end px-5" type="submit">Submit</button>
     </form>

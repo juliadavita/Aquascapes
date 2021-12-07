@@ -10,6 +10,9 @@
 
         <h5 class="text-warning">Description</h5>
         <p class="fw-bold">{{ $post->description }}</p>
+
+        <h5 class="text-warning">Image</h5>
+        <img src="/content_image/{{ $post->content_image }}" width="500px">
     </div>
 
 @endsection
