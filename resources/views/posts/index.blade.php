@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>Post CRUD</h1>
+    <h1>Aquascapes</h1>
     <a class="btn btn-link float-end" href="{{ route('posts.create') }}">Create Post</a>
 
     {{-- Display message --}}
@@ -26,7 +26,7 @@
         <tr>
             <th scope="row">{{ $loop->iteration }}</th>
             <td>{{ $post->fish }}</td>
-            <td>$ {{ $post->description }}</td>
+            <td>{{ $post->description }}</td>
             <td>
 
                 <div class="dropdown"> {{-- Dropdown --}}
