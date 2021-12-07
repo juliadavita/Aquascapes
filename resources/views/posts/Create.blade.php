@@ -2,7 +2,7 @@
 @extends('posts.layout')
 @section('content')
     <div class="card">
-        <div class="card-header">Create a new post</div>
+        <div class="card-header">Add a new fish</div>
         <div class="card-body">
 
             <form action="{{ url('post') }}" method="post">
