@@ -28,8 +28,8 @@
             <th scope="row">{{ $loop->iteration }}</th>
             <td>{{ $post->fish }}</td>
             <td>{{ $post->description }}</td>
-            <td><img src="/content_image/{{ $post->content_image }}" width="100px"></td>
-{{--            <td>{{ $post->content_image }}</td>--}}
+            <td><img src="/content_image/{{ $post->content_image }}" width="150px"></td>
+{
             <td>
 
                 <div class="dropdown"> {{-- Dropdown --}}

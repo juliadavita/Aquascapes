@@ -36,14 +36,6 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-//        $data = $request->validate([
-//            'fish' => 'required',
-//            'description' => 'required',
-//            'content_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-//        ]);
-//
-//        Post::create($data);
-//        return redirect()->route(posts.index);
 
         $request->validate([
             'fish' => 'required',
@@ -98,17 +90,6 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-//        $request->validate([
-//            'fish' => 'required',
-//            'description' => 'required',
-//            'content_image' => 'required'
-//        ]);
-//        $post->fish = $request->fish;
-//        $post->description = $request->description;
-//        $post->content_image = $request->content_image;
-//        $post->save();
-//
-//        return redirect()->route('posts.index');
 
         $request->validate([
             'fish' => 'required',

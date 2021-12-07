@@ -21,6 +21,9 @@
 
         <textarea class="form-control mb-3" name="description" rows="4" placeholder="Description">{{ $post->description }}</textarea>
 
+        <input type="file" name="content_image" class="form-control" placeholder="content_image">
+        <img src="/content_image/{{ $post->content_image }}" width="200px">
+
         <button class="btn btn-primary float-end px-5" type="submit">Submit</button>
     </form>
 
