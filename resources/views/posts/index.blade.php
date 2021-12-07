@@ -1,48 +1,60 @@
-@extends('posts.layout')
+@extends('layouts.app')
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <div class="card">
-                    <div class="card-header">Posts</div>
-                    <div class="card-body">
-                        <a href="{{ url('/posts/create') }}" class="btn btn-success btn-sm" title="Add New Post">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
-                        <br/>
-                        <br/>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Fish</th>
-                                    <th>About</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($posts as $post)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $post->fish }}</td>
-                                        <td>{{ $post->about }}</td>
-                                        <td>
-                                            <a href="{{ url('/post/' . $post->id) }}" title="View Student"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> View</button></a>
-                                            <a href="{{ url('/post/' . $post->id . '/edit') }}" title="Edit Post"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
-                                            <form method="POST" action="{{ url('/posts' . '/' . $post->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Fish" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
+    <h1>Post CRUD</h1>
+    <a class="btn btn-link float-end" href="{{ route('posts.create') }}">Create Post</a>
+
+    {{-- Display message --}}
+    @if (session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
         </div>
-    </div>
+    @endif
+
+    <table class="table table-striped table-hover">
+        <thead>
+        <tr></tr>
+        <tr>
+            <th scope="col">Post ID</th>
+            <th scope="col">Post Name</th>
+            <th scope="col">Post Description</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        @foreach ($posts as $post) {{-- Loop posts --}}
+        <tr>
+            <th scope="row">{{ $loop->iteration }}</th>
+            <td>{{ $post->fish }}</td>
+            <td>$ {{ $post->description }}</td>
+            <td>
+
+                <div class="dropdown"> {{-- Dropdown --}}
+                    <button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="actionDropdown"
+                            data-mdb-toggle="dropdown" aria-expanded="false">
+                        Action
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="actionDropdown">
+                        <li><a class="dropdown-item" href="{{ route('posts.show', $post->id) }}">View</a></li> {{-- View --}}
+                        <li><a class="dropdown-item" href="{{ route('posts.edit', $post->id) }}">Edit</a></li> {{-- Edit --}}
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <form action="{{ route('posts.destroy', $post->id) }}" method="post"> {{-- Delete --}}
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="dropdown-item">Delete</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+        @endforeach
+
+        </tbody>
+    </table>
+
+
 @endsection

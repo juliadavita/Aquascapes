@@ -14,9 +14,9 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::latest()->paginate(5);
-        return view('posts.index', compact('posts'))
-            ->with('i', (request()->input('page', 1) -1) *5);
+        $posts = Post::all();
+        return view('posts.index', compact('posts'));
+//            ->with('i', (request()->input('page', 1) -1) *5);
     }
 
     /**
@@ -26,7 +26,7 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('contacts.create');
+        return view('posts.create');
     }
 
     /**
@@ -37,9 +37,13 @@ class PostsController extends Controller
      */
     public function store(Request $request)
     {
-        $input = $request->all();
-        Contact::create($input);
-        return redirect('post')->with('flash_message', 'Fish added!');
+        $data = $request->validate([
+            'fish' => 'required',
+            'description' => 'required'
+        ]);
+
+        Post::create($data);
+        return redirect()->route(posts.index);
     }
 
     /**
@@ -48,10 +52,9 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Post $post)
     {
-        $post = Post::find($id);
-        return view('posts.edit')->with('posts', $post);
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -60,10 +63,9 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        $post = Post::find($id);
-        return view('posts.edit')->with('posts', $post);
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -73,12 +75,17 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post)
     {
-        $post = Post::find($id);
-        $input = $request->all();
-        $post->update($input);
-        return redirect('post')->with('flash_message', 'Post updated');
+        $request->validate([
+            'fish' => 'required',
+            'description' => 'required'
+        ]);
+        $post->fish = $request->fish;
+        $post->description = $request->description;
+        $post->save();
+
+        return redirect()->route('posts.index');
     }
 
     /**
@@ -87,9 +94,10 @@ class PostsController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Post $post)
     {
-        Post::destroy($id);
-        return redirect('post')->with('flash_message', 'Post deleted');
+        $post->delete();
+
+        return back();
     }
 }

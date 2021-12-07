@@ -13,17 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('posts');
-});
-
-Route::get('/posts/{post}', function ($slug) {
-    $post = file_get_contents(__DIR__ .  "/../resources/posts/{$slug}.html");
-
-    return view('post', [
-        'post' => $post
-    ]);
-});
+//Return resources as homepage
+Route::resource('/', 'App\Http\Controllers\PostsController');
 
 Route::get('/welcome', function () {
     return view('welcome');
@@ -31,3 +22,23 @@ Route::get('/welcome', function () {
 
 // Controller
 Route::resource('posts', 'App\Http\Controllers\PostsController');
+
+
+
+
+
+
+
+// OLD CODE
+
+//Route::get('/', function () {
+//    return view('posts');
+//});
+
+//Route::get('/posts/{post}', function ($slug) {
+//    $post = file_get_contents(__DIR__ .  "/../resources/posts/{$slug}.html");
+//
+//    return view('post', [
+//        'post' => $post
+//    ]);
+//});
