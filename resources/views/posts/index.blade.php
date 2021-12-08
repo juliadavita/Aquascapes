@@ -1,8 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>Aquascapes</h1>
-    <a class="btn btn-link float-end" href="{{ route('posts.create') }}">Create Post</a>
+    <a class="btn btn-link float-left" href="{{ route('posts.create') }}">Create Post</a>
 
     {{-- Display message --}}
     @if (session('success'))
