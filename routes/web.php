@@ -42,3 +42,11 @@ Route::resource('posts', 'App\Http\Controllers\PostsController');
 //        'post' => $post
 //    ]);
 //});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
