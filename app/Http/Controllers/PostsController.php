@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\ApiController;
 
 class PostsController extends Controller
 {
@@ -37,10 +38,12 @@ class PostsController extends Controller
     public function store(Request $request)
     {
 
+        $request->user()->id;
+
         $request->validate([
             'fish' => 'required',
             'description' => 'required',
-            'content_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+            'content_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $input = $request->all();

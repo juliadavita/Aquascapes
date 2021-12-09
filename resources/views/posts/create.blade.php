@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>Products Create</h1>
+    <h1>Create post</h1>
     <hr/>
 
     @if ($errors->any())

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <h1>Post Update</h1>
+    <h1>Edit post</h1>
     <hr/>
 
     @if ($errors->any())
