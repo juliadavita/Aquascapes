@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ApiController;
+use Auth;
 
 class PostsController extends Controller
 {
@@ -38,7 +39,8 @@ class PostsController extends Controller
     public function store(Request $request)
     {
 
-        $request->user()->id;
+        //user_id -> models
+        $post = new Post($request->all());
 
         $request->validate([
             'fish' => 'required',
@@ -54,8 +56,9 @@ class PostsController extends Controller
             $image->move($destinationPath, $contentImage);
             $input['content_image'] = "$contentImage";
         }
+        Auth::user()->posts()->save($post); //save post met user id maar zonder foto
+        Post::create($input); // save post met alles in input variabele zonder user id
 
-        Post::create($input);
 
         return redirect()->route('posts.index')
             ->with('success','Fish added successfully.');
