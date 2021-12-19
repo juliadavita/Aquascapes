@@ -12,4 +12,11 @@ class Post extends Model
     protected $fillable = [
         'fish', 'description', 'content_image'
     ];
+
+    public function user(){
+        //A post is owned by a user
+        return $this->belongsTo('App\Models\User');
+    }
 }
+
+

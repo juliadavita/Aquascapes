@@ -129,4 +129,9 @@ class PostsController extends Controller
 
         return back();
     }
+
+//    public function visibility(Post $post)
+//    {
+//
+//    }
 }

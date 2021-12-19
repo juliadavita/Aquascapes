@@ -18,6 +18,7 @@ class CreatePostsTable extends Migration
             $table->string('fish');
             $table->text('description');
             $table->string('content_image');
+            $table->boolean('visibility')->default(true);
             $table->timestamps();
         });
     }
