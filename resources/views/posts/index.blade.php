@@ -31,6 +31,7 @@
 
             <td>
 
+                @if(auth()->check() && auth()->user()->is_admin == 1)
                 <div class="dropdown"> {{-- Dropdown --}}
                     <button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="actionDropdown"
                             data-mdb-toggle="dropdown" aria-expanded="false">
@@ -51,6 +52,7 @@
                         </li>
                     </ul>
                 </div>
+                    @endif
             </td>
         </tr>
         @endforeach

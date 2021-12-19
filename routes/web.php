@@ -23,7 +23,12 @@ Route::get('/welcome', function () {
 // Controller
 Route::resource('posts', 'App\Http\Controllers\PostsController');
 
-
+//Admin
+Route::group(['middleware' => 'auth'], function(){
+    Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], function(){
+        Route::resource( 'pages', \App\Http\Controllers\Admin\PageController::class);
+    });
+});
 
 
 
