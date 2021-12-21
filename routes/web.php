@@ -23,6 +23,9 @@ Route::get('/welcome', function () {
 // Controller
 Route::resource('posts', 'App\Http\Controllers\PostsController');
 
+//Visibility Route
+//Route::
+
 //Admin
 Route::group(['middleware' => 'auth'], function(){
     Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'is_admin'], function(){

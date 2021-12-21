@@ -43,6 +43,7 @@
                     <ul class="dropdown-menu" aria-labelledby="actionDropdown">
                         <li><a class="dropdown-item" href="{{ route('posts.show', $post->id) }}">View</a></li> {{-- View --}}
                         <li><a class="dropdown-item" href="{{ route('posts.edit', $post->id) }}">Edit</a></li> {{-- Edit --}}
+                        <form action="{{ route('posts.destroy', $post->id) }}" method="post"> {{-- Delete --}}
                         <li>
                             <hr class="dropdown-divider">
                         </li>

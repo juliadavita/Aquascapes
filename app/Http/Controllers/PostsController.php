@@ -56,7 +56,9 @@ class PostsController extends Controller
             $image->move($destinationPath, $contentImage);
             $input['content_image'] = "$contentImage";
         }
-        Auth::user()->posts()->save($post); //save post met user id maar zonder foto
+
+//        Auth::user()->posts()->save($post); //save post met user id maar zonder foto
+        $input['user_id']=Auth::user()->id;
         Post::create($input); // save post met alles in input variabele zonder user id
 
 
@@ -135,6 +137,8 @@ class PostsController extends Controller
 
 //    public function visibility(Post $post)
 //    {
+//        $post->visibility();
+//        return back();
 //
 //    }
 }
