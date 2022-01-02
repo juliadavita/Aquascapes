@@ -35,22 +35,6 @@ Route::group(['middleware' => 'auth'], function(){
 
 
 
-
-
-// OLD CODE
-
-//Route::get('/', function () {
-//    return view('posts');
-//});
-
-//Route::get('/posts/{post}', function ($slug) {
-//    $post = file_get_contents(__DIR__ .  "/../resources/posts/{$slug}.html");
-//
-//    return view('post', [
-//        'post' => $post
-//    ]);
-//});
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
