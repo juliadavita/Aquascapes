@@ -15,11 +15,23 @@
                     @endif
 
                     {{ __('Welcome hello')  }}
+                        <br>
 
                         @foreach ($posts as $post) {{-- Loop posts --}}
-                        <td>{{ $post->fish }}</td>
-                        <td>{{ $post->description }}</td>
-                        <td><img src="/content_image/{{ $post->content_image }}" width="150px"></td>
+                        <tr>
+                            <th scope="row">{{ $loop->iteration }}</th>
+                            <td>{{ $post->fish }}</td>
+                            <td>{{ $post->description }}</td>
+                            <td><img src="/content_image/{{ $post->content_image }}" width="150px"></td>
+                            <td>
+                                <form action="/home/visibility/{{$post->id}}" enctype="multipart/form-data" method="post" >
+                                    @method('PATCH')
+                                    <button>Show/Hide</button>
+                                    @csrf
+                                </form>
+                            </td>
+                            <td>
+                        </tr>
                         @endforeach
 
                 </div>

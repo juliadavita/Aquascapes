@@ -138,17 +138,16 @@ class PostsController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-
         return back();
     }
 
 
-
-
-//    public function visibility(Post $post)
-//    {
-//        $post->visibility();
-//        return back();
-//
-//    }
+    public function visibilityUpdate(Post $post)
+    {
+        $post->update(
+            [
+                'visibility'=> '0'
+            ]
+        );
+    }
 }
