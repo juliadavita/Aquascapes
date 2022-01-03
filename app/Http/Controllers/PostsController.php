@@ -18,6 +18,13 @@ class PostsController extends Controller
     {
         $posts = Post::all();
         return view('posts.index', compact('posts'));
+
+    }
+
+    public function ownPosts(){
+        $posts = Post::where('user_id', auth()->id())->get();
+
+        return view('home', compact('posts'));
     }
 
     /**
@@ -134,6 +141,9 @@ class PostsController extends Controller
 
         return back();
     }
+
+
+
 
 //    public function visibility(Post $post)
 //    {

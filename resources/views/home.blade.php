@@ -14,8 +14,13 @@
                         </div>
                     @endif
 
-                    {{ __('Welcome back')  }}
+                    {{ __('Welcome hello')  }}
 
+                        @foreach ($posts as $post) {{-- Loop posts --}}
+                        <td>{{ $post->fish }}</td>
+                        <td>{{ $post->description }}</td>
+                        <td><img src="/content_image/{{ $post->content_image }}" width="150px"></td>
+                        @endforeach
 
                 </div>
             </div>
