@@ -153,7 +153,7 @@ class PostsController extends Controller
 
     public function search(Request $request)
     {
-        return view ('resources/views/posts/search-results.blade.php');
+        return view('search-results');
     }
 }
 

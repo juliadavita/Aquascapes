@@ -4,12 +4,6 @@
 
     @include('components.search')
 
-    {{-- Display message --}}
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
 <h1>Search</h1>
     <table class="table table-striped table-hover">
@@ -19,7 +13,7 @@
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Image</th>
-            @if(auth()->check() && auth()->user()->is_admin == 1)<th scope="col">Action </th>@endif
+            @if(auth()->check() && auth()->user()->is_admin == 1)<th scope="col">Action</th>@endif
 
 
         </tr>
@@ -28,7 +22,6 @@
 
         @foreach ($posts as $post) {{-- Loop posts --}}
         <tr>
-            {{--            <th scope="row">{{ $loop->iteration }}</th>--}}
             <td>{{ $post->fish }}</td>
             <td>{{ $post->description }}</td>
             <td><img src="/content_image/{{ $post->content_image }}" width="150px"></td>

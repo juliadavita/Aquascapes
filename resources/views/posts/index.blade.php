@@ -21,6 +21,7 @@
 {{--            <th scope="col">ID</th>--}}
             <th scope="col">Name</th>
             <th scope="col">Description</th>
+            <th scope="col">Fishonatic</th>
             <th scope="col">Image</th>
             @if(auth()->check() && auth()->user()->is_admin == 1)<th scope="col">Action </th>@endif
 
@@ -34,6 +35,10 @@
 {{--            <th scope="row">{{ $loop->iteration }}</th>--}}
             <td>{{ $post->fish }}</td>
             <td>{{ $post->description }}</td>
+            <td>{{ $post->user_id }}</td>
+
+{{--            {{dd({{Auth::user()->name}})}}--}}
+
             <td><img src="/content_image/{{ $post->content_image }}" width="150px"></td>
             <td>
 
