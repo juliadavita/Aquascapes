@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="bg-dark text-white rounded p-3">
+    <div class="bg-white text-dark rounded p-3">
         <h5 class="text-warning">Fish</h5>
         <p class="fw-bold">{{ $post->fish }}</p>
 

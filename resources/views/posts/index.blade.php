@@ -1,6 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
+
+
+    @include('components.search')
     <a class="btn btn-link float-left" href="{{ route('posts.create') }}">Create Post</a>
 
     {{-- Display message --}}
@@ -10,11 +13,12 @@
         </div>
     @endif
 
+
     <table class="table table-striped table-hover">
         <thead>
         <tr></tr>
         <tr>
-            <th scope="col">ID</th>
+{{--            <th scope="col">ID</th>--}}
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Image</th>
@@ -27,7 +31,7 @@
 
         @foreach ($posts as $post) {{-- Loop posts --}}
         <tr>
-            <th scope="row">{{ $loop->iteration }}</th>
+{{--            <th scope="row">{{ $loop->iteration }}</th>--}}
             <td>{{ $post->fish }}</td>
             <td>{{ $post->description }}</td>
             <td><img src="/content_image/{{ $post->content_image }}" width="150px"></td>
