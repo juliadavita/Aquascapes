@@ -4,14 +4,7 @@
 
 
     @include('components.search')
-    <a class="btn btn-link float-left" href="{{ route('posts.create') }}">Create Post</a>
 
-    {{-- Display message --}}
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
 
     <table class="table table-striped table-hover">

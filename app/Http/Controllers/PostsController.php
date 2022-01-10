@@ -141,20 +141,34 @@ class PostsController extends Controller
         return back();
     }
 
+    public function adminDash()
+    {
+        $posts = Post::all();
+        return view('adminDash', compact('posts'));
+    }
+
 
     public function visibilityUpdate(Post $post)
     {
-        $post->update(
-            [
-                'visibility'=> '0'
-            ]
-        );
+        $post->visibility=!$post->visibility;
+        $post->save();
+
+        return back();
     }
 
     public function search(Request $request)
     {
-        return view('search-results');
+        $posts = Post::all();
+        return view('posts.search-results', compact('posts'));
     }
+
+//    public function ownerName(){
+//        $posts = Post::where('user_id', auth()->id())->get();
+//
+//        return view('home', compact('posts'));
+//    }
 }
+
+
 
 

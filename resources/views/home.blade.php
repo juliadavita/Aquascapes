@@ -7,7 +7,14 @@
             <div class="card">
                 <div class="card-header">{{ __('Dashboard of') }} {{Auth::user()->name}}</div>
 
+                <a class="btn btn-link float-left" href="{{ route('posts.create') }}">Create Post</a>
 
+                {{-- Display message --}}
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
 
                 <div class="card-body">
                     @if (session('status'))

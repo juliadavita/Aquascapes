@@ -24,7 +24,6 @@ Route::get('/welcome', function () {
 Route::resource('posts', 'App\Http\Controllers\PostsController');
 
 //Visibility Route
-//Route::
 
 //Admin
 Route::group(['middleware' => 'auth'], function(){
@@ -33,9 +32,13 @@ Route::group(['middleware' => 'auth'], function(){
     });
 });
 
+Route::get('admin/home', [App\Http\Controllers\PostsController::class, 'adminDash'])->name('admin.home')->middleware('is_admin');
 
+//Visibility Route
 Auth::routes();
 Route::patch('/home/visibility/{post}', 'App\Http\Controllers\PostsController@visibilityUpdate');
+
+//Own Posts showing
 Route::get('/home', [App\Http\Controllers\PostsController::class, 'ownPosts'])->name('home');
 
 //Search
