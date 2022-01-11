@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Api\ApiController;
+use App\Models\User;
 use Auth;
 
 class PostsController extends Controller
@@ -16,6 +17,7 @@ class PostsController extends Controller
      */
     public function index()
     {
+
         // Checks if request has 'category' in URL and returns the posts with the matching category
         if(request()->has('category')) {
             $posts = Post::where('category', request('category'))->get();
@@ -192,9 +194,8 @@ class PostsController extends Controller
     }
 
 //    public function ownerName(){
-//        $posts = Post::where('user_id', auth()->id())->get();
-//
-//        return view('home', compact('posts'));
+//        $user = Post::where('user_id', auth()->name())->get();
+//        return view('home', compact('user'));
 //    }
 }
 
