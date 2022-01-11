@@ -32,6 +32,7 @@ Route::group(['middleware' => 'auth'], function(){
     });
 });
 
+
 Route::get('admin/home', [App\Http\Controllers\PostsController::class, 'adminDash'])->name('admin.home')->middleware('is_admin');
 
 //Visibility Route

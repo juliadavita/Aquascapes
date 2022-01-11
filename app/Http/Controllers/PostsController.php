@@ -93,13 +93,17 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
-
-//        if (Auth::user()->id==Post::find($post)->user->id){
-//            return view('posts.edit', compact('post'));
-//        } else {
-//            return back();
-//        }
-        return view('posts.edit', compact('post'));
+        if(!Auth::guest()) {
+            if (Auth::user()->id === $post->user_id){
+                return view('posts.edit', compact('post'));
+            } else {
+                $posts = Post::all();
+                return view('posts.index', compact('posts'));
+            }
+        } else {
+            return view('auth.login');
+        }
+//        return view('posts.edit', compact('post'));
     }
 
     /**
