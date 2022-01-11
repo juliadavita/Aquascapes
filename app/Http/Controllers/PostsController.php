@@ -16,9 +16,13 @@ class PostsController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        // Checks if request has 'category' in URL and returns the posts with the matching category
+        if(request()->has('category')) {
+            $posts = Post::where('category', request('category'))->get();
+        } else {
+            $posts = Post::all();
+        }
         return view('posts.index', compact('posts'));
-
     }
 
     public function ownPosts(){
@@ -95,8 +99,11 @@ class PostsController extends Controller
     {
         //Check if user is logged in, else redirect to login
         if(!Auth::guest()) {
+            if(Auth::user()->is_admin == 1) {
+                return view('posts.edit', compact('post'));
+            }
             //Check if user id matches user_id in post
-            if (Auth::user()->id === $post->user_id){
+            else if (Auth::user()->id === $post->user_id){
                 return view('posts.edit', compact('post'));
             } else {
                 // Return to overview page
@@ -181,7 +188,6 @@ class PostsController extends Controller
             return view('posts.search-results', ['error' => 'Geen resultaten, bitch!']);
         }
 
-//        $posts = Post::all();
         return view('posts.search-results', compact('posts'));
     }
 

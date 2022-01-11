@@ -20,7 +20,7 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-// PostsController
+//PostsController
 Route::resource('posts', 'App\Http\Controllers\PostsController');
 
 
