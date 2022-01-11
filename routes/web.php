@@ -20,10 +20,9 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-// Controller
+// PostsController
 Route::resource('posts', 'App\Http\Controllers\PostsController');
 
-//Visibility Route
 
 //Admin
 Route::group(['middleware' => 'auth'], function(){

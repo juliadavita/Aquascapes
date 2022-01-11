@@ -11,7 +11,6 @@
         <thead>
         <tr></tr>
         <tr>
-{{--            <th scope="col">ID</th>--}}
             <th scope="col">Name</th>
             <th scope="col">Description</th>
             <th scope="col">Fishonatic</th>
@@ -25,12 +24,12 @@
 
         @foreach ($posts as $post) {{-- Loop posts --}}
         <tr>
-{{--            <th scope="row">{{ $loop->iteration }}</th>--}}
+
             <td>{{ $post->fish }}</td>
             <td>{{ $post->description }}</td>
             <td>{{ $post->user_id }}</td>
 
-{{--            {{dd({{Auth::user()->name}})}}--}}
+
 
             <td><img src="/content_image/{{ $post->content_image }}" width="150px"></td>
             <td>

@@ -93,17 +93,19 @@ class PostsController extends Controller
      */
     public function edit(Post $post)
     {
+        //Check if user is logged in, else redirect to login
         if(!Auth::guest()) {
+            //Check if user id matches user_id in post
             if (Auth::user()->id === $post->user_id){
                 return view('posts.edit', compact('post'));
             } else {
+                // Return to overview page
                 $posts = Post::all();
                 return view('posts.index', compact('posts'));
             }
         } else {
             return view('auth.login');
         }
-//        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -168,8 +170,18 @@ class PostsController extends Controller
 
     public function search(Request $request)
     {
+        $query = $request->input('query');
 
-        $posts = Post::all();
+        $posts = Post::where('fish', 'LIKE', '%' .$query. '%')
+            ->orWhere('description', 'LIKE', '%' .$query. '%')->get();
+
+        if(count($posts) > 0) {
+            return view('posts.search-results', compact('posts'));
+        } else {
+            return view('posts.search-results', ['error' => 'Geen resultaten, bitch!']);
+        }
+
+//        $posts = Post::all();
         return view('posts.search-results', compact('posts'));
     }
 
