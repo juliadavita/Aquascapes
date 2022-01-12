@@ -70,7 +70,6 @@ class PostsController extends Controller
             $input['content_image'] = "$contentImage";
         }
 
-//        Auth::user()->posts()->save($post); //save post met user id maar zonder foto
         $input['user_id']=Auth::user()->id;
         Post::create($input); // save post met alles in input variabele zonder user id
 
@@ -182,6 +181,7 @@ class PostsController extends Controller
         $query = $request->input('query');
 
         $posts = Post::where('fish', 'LIKE', '%' .$query. '%')
+            ->orWhere('category', 'LIKE', '%' .$query. '%')
             ->orWhere('description', 'LIKE', '%' .$query. '%')->get();
 
         if(count($posts) > 0) {

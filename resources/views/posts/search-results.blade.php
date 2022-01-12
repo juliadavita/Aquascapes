@@ -7,27 +7,37 @@
 
     <h1>Search results</h1>
 
-    <p>5 results for '{{ request()->input('query') }}'</p>
-
-
-
 
     @if(isset($posts))
-        <p>Resultaat gevonden</p>
-        @foreach ($posts as $post)
+        <p>Found <strong>{{ $posts->count() }}</strong> results for '{{ request()->input('query') }}'</p>
+        <table class="table table-striped table-hover">
+            <thead>
+            <tr></tr>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Blogger</th>
+                <th scope="col">Soort</th>
+                <th scope="col">Image</th>
+                @if(auth()->check() && auth()->user()->is_admin == 1)<th scope="col">Action </th>@endif
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+            @foreach ($posts as $post) {{-- Loop posts --}}
             <tr>
 
                 <td>{{ $post->fish }}</td>
                 <td>{{ $post->description }}</td>
                 <td>{{ $post->user_id }}</td>
-
-
-
+                <td>{{ $post->category }}</td>
                 <td><img src="/content_image/{{ $post->content_image }}" width="150px"></td>
                 <td>
 
                     @if(auth()->check() && auth()->user()->is_admin == 1)
-                        <div class="dropdown"> {{-- Dropdown --}}
+                        <div class="dropdown">
                             <button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="actionDropdown"
                                     data-mdb-toggle="dropdown" aria-expanded="false">
                                 Action
@@ -51,8 +61,11 @@
                     @endif
                 </td>
             </tr>
+            @endforeach
 
-        @endforeach
+            </tbody>
+        </table>
+
     @endif
 
     @if(isset($error))
