@@ -22,6 +22,13 @@
 
         <input type="file" name="content_image" class="form-control mb-3" placeholder="Image"/>
 
+            <select name="category" id="category">
+                <option value="Siervis">Siervis</option>
+                <option value="Roofvis">Roofvis</option>
+                <option value="Algeneter">Algeneter</option>
+                <option value="Goudvis">Goudvis</option>
+            </select>
+
         <button class="btn btn-primary float-end px-5" type="submit">Submit</button>
     </form>
 

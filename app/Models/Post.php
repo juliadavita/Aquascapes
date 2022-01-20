@@ -10,7 +10,7 @@ class Post extends Model
     use HasFactory;
 
     protected $fillable = [
-        'fish', 'description', 'content_image', 'user_id', 'visibility'
+        'fish', 'description', 'content_image', 'user_id', 'visibility', 'category', 'username'
     ];
 
 //    public static function where(string $string, string $string1, string $string2)

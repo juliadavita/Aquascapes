@@ -17,7 +17,6 @@ class PostsController extends Controller
      */
     public function index()
     {
-
         // Checks if request has 'category' in URL and returns the posts with the matching category
         if(request()->has('category')) {
             $posts = Post::where(function($post) {
@@ -45,7 +44,14 @@ class PostsController extends Controller
      */
     public function create()
     {
-        return view('posts.create');
+        //Check if user is logged in, else redirect to login
+        if(Auth::guest()) {
+            // Return back with error
+            return view('auth.login')->with('error', "You must be logged in");
+        } else {
+            return view('posts.create');
+        }
+
     }
 
     /**
@@ -64,6 +70,7 @@ class PostsController extends Controller
             'fish' => 'required',
             'description' => 'required',
             'content_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'category' => 'required'
         ]);
 
         $input = $request->all();
@@ -75,9 +82,9 @@ class PostsController extends Controller
             $input['content_image'] = "$contentImage";
         }
 
-//        $input['user_id']=Auth::user()->id;
         $input['username']=Auth::user()->name;
-        Post::create($input); // save post met alles in input variabele zonder user id
+        $input['user_id']=Auth::user()->id;
+        Post::create($input);
 
 
         return redirect()->route('posts.index')
@@ -187,7 +194,7 @@ class PostsController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-
+        // Checks if query matches fish, category or description
         $posts = Post::where('fish', 'LIKE', '%' .$query. '%')
             ->orWhere('category', 'LIKE', '%' .$query. '%')
             ->orWhere('description', 'LIKE', '%' .$query. '%')->get();
