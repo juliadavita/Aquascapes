@@ -112,7 +112,7 @@ class PostsController extends Controller
                 return view('posts.index', compact('posts'));
             }
         } else {
-            return view('auth.login');
+            return view('auth.login')->with('error', "You must be logged in");
         }
     }
 
@@ -171,6 +171,7 @@ class PostsController extends Controller
     public function visibilityUpdate(Post $post)
     {
         $post->visibility=!$post->visibility;
+
         $post->save();
 
         return back();
@@ -192,6 +193,8 @@ class PostsController extends Controller
 
         return view('posts.search-results', compact('posts'));
     }
+
+
 
 //    public function ownerName(){
 //        $user = Post::where('user_id', auth()->name())->get();

@@ -4,12 +4,12 @@
 
     @include('components.search')
 
-
     <h1>Search results</h1>
 
 
     @if(isset($posts))
-        <p>Found <strong>{{ $posts->count() }}</strong> results for '{{ request()->input('query') }}'</p>
+
+
         <table class="table table-striped table-hover">
             <thead>
             <tr></tr>
@@ -28,7 +28,6 @@
 
             @foreach ($posts as $post) {{-- Loop posts --}}
             <tr>
-
                 <td>{{ $post->fish }}</td>
                 <td>{{ $post->description }}</td>
                 <td>{{ $post->user_id }}</td>

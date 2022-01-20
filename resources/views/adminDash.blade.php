@@ -68,7 +68,7 @@
                                                     </form>
                                                 </li>
                                                 <li>
-                                                    <form action="/home/visibility/{{$post->id}}" enctype="multipart/form-data" method="post" >--}}
+                                                    <form action="/home/visibility/{{$post->id}}" enctype="multipart/form-data" method="post" >
                                                         @method('PATCH')
                                                         <button type="submit" class="dropdown-item">Show/Hide</button>
                                                         @csrf

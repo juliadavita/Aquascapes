@@ -4,8 +4,8 @@
 
 
     @include('components.search')
+    <br>
     @include('components.filter-dropdown')
-
 
 
     <table class="table table-striped table-hover">
