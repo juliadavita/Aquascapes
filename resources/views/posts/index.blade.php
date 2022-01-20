@@ -29,7 +29,7 @@
 
             <td>{{ $post->fish }}</td>
             <td>{{ $post->description }}</td>
-            <td>{{ $post->user_id }}</td>
+            <td>{{ $post->username }}</td>
             <td>{{ $post->category }}</td>
             <td><img src="/content_image/{{ $post->content_image }}" width="150px"></td>
             <td>

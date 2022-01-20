@@ -20,9 +20,14 @@ class PostsController extends Controller
 
         // Checks if request has 'category' in URL and returns the posts with the matching category
         if(request()->has('category')) {
-            $posts = Post::where('category', request('category'))->get();
+            $posts = Post::where(function($post) {
+                // Checks if there is a category request
+                $post->where('category', request('category'));
+                // Checks if post is '1' in boolean
+                $post->where('visibility', '1');
+            })->get();
         } else {
-            $posts = Post::all();
+            $posts = Post::where('visibility', '1')->get();
         }
         return view('posts.index', compact('posts'));
     }
@@ -70,7 +75,8 @@ class PostsController extends Controller
             $input['content_image'] = "$contentImage";
         }
 
-        $input['user_id']=Auth::user()->id;
+//        $input['user_id']=Auth::user()->id;
+        $input['username']=Auth::user()->name;
         Post::create($input); // save post met alles in input variabele zonder user id
 
 
@@ -110,8 +116,10 @@ class PostsController extends Controller
                 // Return to overview page
                 $posts = Post::all();
                 return view('posts.index', compact('posts'));
+
             }
         } else {
+            // Return back with error
             return view('auth.login')->with('error', "You must be logged in");
         }
     }
@@ -171,7 +179,6 @@ class PostsController extends Controller
     public function visibilityUpdate(Post $post)
     {
         $post->visibility=!$post->visibility;
-
         $post->save();
 
         return back();
