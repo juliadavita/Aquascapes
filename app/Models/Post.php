@@ -13,10 +13,6 @@ class Post extends Model
         'fish', 'description', 'content_image', 'user_id', 'visibility', 'category', 'username'
     ];
 
-//    public static function where(string $string, string $string1, string $string2)
-//    {
-//
-//    }
 
     public function user(){
         //A post is owned by a user

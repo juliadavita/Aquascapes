@@ -14,7 +14,7 @@
         <tr>
             <th scope="col">Name</th>
             <th scope="col">Description</th>
-            <th scope="col">Blogger</th>
+            <th scope="col">Fishonatic</th>
             <th scope="col">Soort</th>
             <th scope="col">Image</th>
             @if(auth()->check() && auth()->user()->is_admin == 1)<th scope="col">Action </th>@endif

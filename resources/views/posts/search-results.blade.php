@@ -16,7 +16,7 @@
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Description</th>
-                <th scope="col">Blogger</th>
+                <th scope="col">Fishonatic</th>
                 <th scope="col">Soort</th>
                 <th scope="col">Image</th>
                 @if(auth()->check() && auth()->user()->is_admin == 1)<th scope="col">Action </th>@endif
@@ -30,7 +30,7 @@
             <tr>
                 <td>{{ $post->fish }}</td>
                 <td>{{ $post->description }}</td>
-                <td>{{ $post->user_id }}</td>
+                <td>{{ $post->username }}</td>
                 <td>{{ $post->category }}</td>
                 <td><img src="/content_image/{{ $post->content_image }}" width="150px"></td>
                 <td>
