@@ -41,7 +41,7 @@
                         Action
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="actionDropdown">
-                        <li><a class="dropdown-item" href="{{ route('posts.show', $post->id) }}">View</a></li> {{-- View --}}
+{{--                        <li><a class="dropdown-item" href="{{ route('posts.show', $post->id) }}">View</a></li> --}}{{-- View --}}
                         <li><a class="dropdown-item" href="{{ route('posts.edit', $post->id) }}">Edit</a></li> {{-- Edit --}}
                         <form action="{{ route('posts.destroy', $post->id) }}" method="post"> {{-- Delete --}}
                         <li>
@@ -53,10 +53,17 @@
                                 @method('delete')
                                 <button type="submit" class="dropdown-item">Delete</button>
                             </form>
+                            <form action="/home/visibility/{{$post->id}}" enctype="multipart/form-data" method="post" >
+                                @method('PATCH')
+                                <button type="submit" class="dropdown-item">Show/Hide</button>
+                                @csrf
+                            </form>
                         </li>
                     </ul>
                 </div>
                     @endif
+                <br>
+                    <a class="btn btn-primary" href="{{ route('posts.show', $post->id) }}">View</a>
             </td>
         </tr>
         @endforeach

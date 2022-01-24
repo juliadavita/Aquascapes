@@ -208,12 +208,6 @@ class PostsController extends Controller
         return view('posts.search-results', compact('posts'));
     }
 
-
-
-//    public function ownerName(){
-//        $user = Post::where('user_id', auth()->name())->get();
-//        return view('home', compact('user'));
-//    }
 }
 
 

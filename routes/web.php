@@ -45,10 +45,3 @@ Route::get('/home', [App\Http\Controllers\PostsController::class, 'ownPosts'])->
 Route::get('/search', 'App\Http\Controllers\PostsController@search')->name('search');
 
 
-
-
-
-//Auth::routes();
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
