@@ -197,6 +197,7 @@ class PostsController extends Controller
         // Checks if query matches fish, category or description
         $posts = Post::where('fish', 'LIKE', '%' .$query. '%')
             ->orWhere('category', 'LIKE', '%' .$query. '%')
+            ->orWhere('username', 'LIKE', '%' .$query. '%')
             ->orWhere('description', 'LIKE', '%' .$query. '%')->get();
 
         if(count($posts) > 0) {
