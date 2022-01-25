@@ -23,7 +23,7 @@
                             </div>
                         @endif
 
-                        {{ __('Have a look at your posts!')  }}
+                        {{ __('Have a look at all the posts!')  }}
                         <br>
 
                         <table class="table table-striped table-hover">
